@@ -11,26 +11,26 @@
   <div class="card">
     <h1>🌸 Asisten Bahasa Indonesia</h1>
     <p class="subtitle">
-      Mengubah teks informal menjadi bahasa Indonesia yang lebih formal dan rapi.
+      Memperbaiki teks bahasa Indonesia secara otomatis seperti AI editor.
     </p>
 
+    <label>Teks asli</label>
     <textarea
       id="inputText"
       placeholder="Contoh: aku gpp ga ngerti tp makasih yaa"
     ></textarea>
 
-    <button id="prosesBtn">✨ Perbaiki Teks</button>
+    <div id="hasilBox" style="display:none;">
+      <label>Hasil perbaikan</label>
+      <div id="outputView" class="output-view"></div>
 
-    <textarea
-      id="outputText"
-      readonly
-      placeholder="Hasil perbaikan akan muncul di sini..."
-    ></textarea>
+      <p id="counter" class="hint"></p>
 
-    <button id="copyBtn" class="secondary">📋 Salin Hasil</button>
+      <button class="secondary" onclick="salinHasil()">📋 Salin Hasil</button>
+    </div>
 
     <p class="info">
-      🔵 Sistem ini bekerja otomatis seperti AI sederhana (tanpa internet).
+      🔵 Diproses otomatis tanpa internet (AI lokal sederhana)
     </p>
   </div>
 
