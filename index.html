@@ -11,26 +11,25 @@
   <div class="card">
     <h1>🌸 Asisten Bahasa Indonesia</h1>
     <p class="subtitle">
-      Memperbaiki teks bahasa Indonesia secara otomatis seperti AI editor.
+      Menyoroti kata tidak baku dan menampilkan versi yang lebih tepat.
     </p>
 
-    <label>Teks asli</label>
     <textarea
       id="inputText"
-      placeholder="Contoh: aku gpp ga ngerti tp makasih yaa"
+      placeholder="Contoh: aku gpp tapi ga ngerti makasih yaa"
     ></textarea>
 
-    <div id="hasilBox" style="display:none;">
-      <label>Hasil perbaikan</label>
-      <div id="outputView" class="output-view"></div>
+    <button onclick="prosesTeks()">✨ Periksa Teks</button>
 
-      <p id="counter" class="hint"></p>
+    <div id="hasil" class="hasil"></div>
 
-      <button class="secondary" onclick="salinHasil()">📋 Salin Hasil</button>
-    </div>
+    <button id="copyBtn" class="secondary" onclick="salinHasil()" style="display:none">
+      📋 Salin Versi Benar
+    </button>
 
     <p class="info">
-      🔵 Diproses otomatis tanpa internet (AI lokal sederhana)
+      🔵 Kata berwarna menunjukkan kata tidak baku.  
+      Sistem tidak mengubah tanda baca secara otomatis.
     </p>
   </div>
 
