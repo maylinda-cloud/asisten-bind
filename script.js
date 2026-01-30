@@ -39,11 +39,11 @@ function prosesTeks() {
     const low = k.toLowerCase();
 
     if (kamus[low]) {
-      if (highlightAktif) {
-        tampilan.push(`<span class="highlight">${k}</span>`);
-      } else {
-        tampilan.push(k);
-      }
+      tampilan.push(
+        highlightAktif
+          ? `<span class="highlight">${k}</span>`
+          : k
+      );
       versiBenar.push(kamus[low]);
     } else {
       tampilan.push(k);
@@ -71,5 +71,11 @@ function salinHasil() {
 
 function toggleHighlight() {
   highlightAktif = !highlightAktif;
+
+  const btn = document.getElementById("toggleHighlight");
+  btn.innerText = highlightAktif
+    ? "🎨 Highlight: ON"
+    : "🎨 Highlight: OFF";
+
   prosesTeks();
 }
