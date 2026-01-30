@@ -251,16 +251,11 @@ const kamus = {
 // kehilangan & luka
 "patah hati": "kehilangan perasaan utuh",
 "sakit banget": "terasa sangat menyakitkan",
-"kecewa": "merasa kecewa",
 "nyesek": "terasa sesak",
 "hancur": "merasa runtuh",
 
 // emosi halus
-"capek": "lelah",
-"cape": "lelah",
 "bingung": "merasa bimbang",
-"galau": "merasa resah",
-"kosong": "merasa hampa",
 "tenang": "merasa damai",
 
 // keintiman batin
