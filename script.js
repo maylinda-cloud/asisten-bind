@@ -11,7 +11,6 @@ const kamus = {
   "makasih": "terima kasih",
   "mksh": "terima kasih",
   "yaa": "ya",
-  "yaaa": "ya",
   "kok": "",
   "dong": "",
   "deh": "",
@@ -21,7 +20,6 @@ const kamus = {
   "aja": "saja",
   "udh": "sudah",
   "blm": "belum",
-  "pdhl": "padahal",
   "krn": "karena"
 };
 
@@ -39,16 +37,12 @@ function prosesTeks() {
 
   let teks = input.toLowerCase();
 
-  // ganti kata informal
   for (let kata in kamus) {
     const regex = new RegExp(`\\b${kata}\\b`, "gi");
     teks = teks.replace(regex, kamus[kata]);
   }
 
-  // rapikan spasi
   teks = teks.replace(/\s+/g, " ").trim();
-
-  // kapital awal kalimat
   teks = teks.charAt(0).toUpperCase() + teks.slice(1);
 
   output.value = teks;
