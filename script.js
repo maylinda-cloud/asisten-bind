@@ -8,7 +8,10 @@ const kamus = {
   "yaa": "ya",
   "yg": "yang",
   "kalo": "kalau",
-  "aja": "saja"
+  "aja": "saja",
+  "bgt": "banget",
+  "udh": "sudah",
+  "trs": "terus"
 };
 
 let highlightAktif = true;
@@ -33,13 +36,12 @@ function prosesTeks() {
     const low = k.toLowerCase();
 
     if (kamus[low]) {
-  if (highlightAktif) {
-    tampilan.push(`<span class="highlight">${k}</span>`);
-  } else {
-    tampilan.push(k);
-  }
-  versiBenar.push(kamus[low]);
-    }
+      if (highlightAktif) {
+        tampilan.push(`<span class="highlight">${k}</span>`);
+      } else {
+        tampilan.push(k);
+      }
+      versiBenar.push(kamus[low]);
     } else {
       tampilan.push(k);
       versiBenar.push(k);
@@ -59,8 +61,12 @@ function prosesTeks() {
   copyBtn.style.display = "block";
 }
 
-function salinHasil()
-  function toggleHighlight() {
+function salinHasil() {
+  navigator.clipboard.writeText(hasilBersih);
+  alert("✅ Teks berhasil disalin!");
+}
+
+function toggleHighlight() {
   highlightAktif = !highlightAktif;
 
   const btn = document.getElementById("toggleHighlight");
@@ -68,8 +74,5 @@ function salinHasil()
     ? "🎨 Highlight: ON"
     : "🎨 Highlight: OFF";
 
-  prosesTeks(document.getElementById("toggleHighlight").style.display = "block";);
-} {
-  navigator.clipboard.writeText(hasilBersih);
-  alert("✅ Teks berhasil disalin!");
+  prosesTeks();
 }
