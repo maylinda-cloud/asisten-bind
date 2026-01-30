@@ -11,6 +11,7 @@ const kamus = {
   "aja": "saja"
 };
 
+let highlightAktif = true;
 let hasilBersih = "";
 
 function prosesTeks() {
@@ -32,8 +33,13 @@ function prosesTeks() {
     const low = k.toLowerCase();
 
     if (kamus[low]) {
-      tampilan.push(`<span class="highlight">${k}</span>`);
-      versiBenar.push(kamus[low]);
+  if (highlightAktif) {
+    tampilan.push(`<span class="highlight">${k}</span>`);
+  } else {
+    tampilan.push(k);
+  }
+  versiBenar.push(kamus[low]);
+    }
     } else {
       tampilan.push(k);
       versiBenar.push(k);
@@ -53,7 +59,17 @@ function prosesTeks() {
   copyBtn.style.display = "block";
 }
 
-function salinHasil() {
+function salinHasil()
+  function toggleHighlight() {
+  highlightAktif = !highlightAktif;
+
+  const btn = document.getElementById("toggleHighlight");
+  btn.innerText = highlightAktif
+    ? "🎨 Highlight: ON"
+    : "🎨 Highlight: OFF";
+
+  prosesTeks(document.getElementById("toggleHighlight").style.display = "block";);
+} {
   navigator.clipboard.writeText(hasilBersih);
   alert("✅ Teks berhasil disalin!");
 }
