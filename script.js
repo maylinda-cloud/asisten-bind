@@ -1,125 +1,59 @@
-const input = document.getElementById("inputText");
-const outputView = document.getElementById("outputView");
-const hasilBox = document.getElementById("hasilBox");
-const counter = document.getElementById("counter");
-
 const kamus = {
-  // singkatan umum
+  "aku": "Saya",
   "gpp": "tidak apa-apa",
   "ga": "tidak",
-  "gak": "tidak",
   "nggak": "tidak",
-  "tdk": "tidak",
   "tp": "tetapi",
-  "tapi": "tetapi",
-  "yg": "yang",
-  "aja": "saja",
-  "udh": "sudah",
-  "sdh": "sudah",
-  "blm": "belum",
-  "krn": "karena",
-  "dgn": "dengan",
-  "dr": "dari",
-  "jg": "juga",
-  "kmrn": "kemarin",
-  "skrg": "sekarang",
-  "trs": "terus",
-  "bs": "bisa",
-  "bgt": "banget",
-  "hrs": "harus",
-  "pdhl": "padahal",
-  "sm": "sama",
-  "org": "orang",
-  "dlm": "dalam",
-
-  // kata santai → rapi
   "makasih": "terima kasih",
-  "makasi": "terima kasih",
-  "thx": "terima kasih",
-  "thanks": "terima kasih",
-  "sorry": "maaf",
-  "pls": "tolong",
-  "tolongin": "tolong",
-  "bantuin": "membantu",
-
-  // kata kerja santai
-  "ngomong": "berbicara",
-  "bilang": "mengatakan",
-  "nanya": "bertanya",
-  "jawab": "menjawab",
-  "jelasin": "menjelaskan",
-  "liat": "melihat",
-  "denger": "mendengar",
-  "pake": "menggunakan",
-  "pikirin": "memikirkan",
-  "kerjain": "mengerjakan",
-
-  // ekspresi
-  "capek": "lelah",
-  "capek banget": "sangat lelah",
-  "pusing": "bingung",
-  "ribet": "rumit",
-  "bingung banget": "sangat bingung",
-  "ga ngerti": "tidak mengerti",
-  "gatau": "tidak tahu",
-  "ga tau": "tidak tahu",
-
-  // kata informal lain
-  "kok": "",
-  "dong": "",
-  "deh": "",
-  "nih": "",
-  "aja sih": "saja",
-  "emang": "memang",
-  "doang": "saja",
-
-  // pronomina (opsional, tapi bikin rapi)
-  "aku": "saya",
-  "gue": "saya",
-  "gw": "saya",
-  "lu": "kamu",
-  "loe": "kamu",
-  "elo": "kamu"
+  "yaa": "ya",
+  "yg": "yang",
+  "kalo": "kalau",
+  "aja": "saja"
 };
 
-input.addEventListener("input", () => {
-  const teks = input.value.trim();
-  if (!teks) {
-    hasilBox.style.display = "none";
+let hasilBersih = "";
+
+function prosesTeks() {
+  const input = document.getElementById("inputText").value.trim();
+  const hasilDiv = document.getElementById("hasil");
+  const copyBtn = document.getElementById("copyBtn");
+
+  if (!input) {
+    hasilDiv.innerHTML = "⚠️ Masukkan teks terlebih dahulu.";
+    copyBtn.style.display = "none";
     return;
   }
 
-  const hasil = perbaikiTeks(teks);
-  outputView.innerHTML = hasil.teks;
-  counter.innerText = `✨ ${hasil.jumlah} perbaikan diterapkan`;
-  hasilBox.style.display = "block";
-});
+  const kata = input.split(/\s+/);
+  let tampilan = [];
+  let versiBenar = [];
 
-function perbaikiTeks(teks) {
-  let jumlah = 0;
-  let hasil = teks;
+  kata.forEach(k => {
+    const low = k.toLowerCase();
 
-  for (let kata in kamus) {
-    const regex = new RegExp("\\b" + kata + "\\b", "gi");
-    if (regex.test(hasil)) {
-      jumlah++;
-      hasil = hasil.replace(
-        regex,
-        `<span class="mark">${kamus[kata]}</span>`
-      );
+    if (kamus[low]) {
+      tampilan.push(`<span class="highlight">${k}</span>`);
+      versiBenar.push(kamus[low]);
+    } else {
+      tampilan.push(k);
+      versiBenar.push(k);
     }
-  }
+  });
 
-  // huruf berlebihan (yaaa -> ya)
-  hasil = hasil.replace(/([a-z])\1{2,}/gi, "$1$1");
+  hasilBersih = versiBenar.join(" ");
 
-  // kapital awal kalimat
-  hasil = hasil.charAt(0).toUpperCase() + hasil.slice(1);
+  hasilDiv.innerHTML = `
+    <div><strong>Hasil sorotan:</strong></div>
+    <div>${tampilan.join(" ")}</div>
+    <hr>
+    <div><strong>Versi yang dapat digunakan:</strong></div>
+    <div>${hasilBersih}</div>
+  `;
 
-  return { teks: hasil, jumlah };
+  copyBtn.style.display = "block";
 }
 
 function salinHasil() {
-  navigator.clipboard.writeText(outputView.innerText);
-  alert("✅ Hasil berhasil disalin");
+  navigator.clipboard.writeText(hasilBersih);
+  alert("✅ Teks berhasil disalin!");
 }
