@@ -12,8 +12,8 @@ body {
   align-items: center;
 }
 
-.container {
-  background: rgba(255, 255, 255, 0.95);
+.card {
+  background: rgba(255, 255, 255, 0.92);
   width: 92%;
   max-width: 460px;
   padding: 22px;
@@ -29,9 +29,9 @@ h1 {
 
 .subtitle {
   text-align: center;
+  margin: 8px 0 16px;
   font-size: 14px;
   color: #777;
-  margin-bottom: 14px;
 }
 
 textarea {
@@ -40,18 +40,19 @@ textarea {
   padding: 12px;
   border-radius: 14px;
   border: 1px solid #ddd;
-  font-size: 14px;
   resize: none;
-  margin-top: 10px;
+  font-size: 14px;
+  outline: none;
+  margin-top: 12px;
 }
 
-textarea[readonly] {
-  background: #faf9ff;
+textarea:focus {
+  border-color: #b39ddb;
 }
 
 button {
   width: 100%;
-  margin-top: 12px;
+  margin-top: 14px;
   padding: 14px;
   border-radius: 16px;
   border: none;
