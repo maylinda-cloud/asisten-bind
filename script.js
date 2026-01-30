@@ -10,8 +10,11 @@ const kamus = {
   "kalo": "kalau",
   "aja": "saja",
   "bgt": "banget",
-  "udh": "sudah",
-  "trs": "terus"
+  "trs": "terus",
+  "tdk": "tidak",
+  "krn": "karena",
+  "dr": "dari",
+  "utk": "untuk"
 };
 
 let highlightAktif = true;
@@ -68,11 +71,5 @@ function salinHasil() {
 
 function toggleHighlight() {
   highlightAktif = !highlightAktif;
-
-  const btn = document.getElementById("toggleHighlight");
-  btn.innerText = highlightAktif
-    ? "🎨 Highlight: ON"
-    : "🎨 Highlight: OFF";
-
   prosesTeks();
 }
