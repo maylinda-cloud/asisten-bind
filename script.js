@@ -1,16 +1,34 @@
-const aturan = {
+const kamus = {
   "aku": "saya",
+  "gue": "saya",
+  "gw": "saya",
   "kamu": "Anda",
+  "lu": "Anda",
   "gpp": "tidak apa-apa",
   "ga": "tidak",
   "nggak": "tidak",
+  "enggak": "tidak",
   "makasih": "terima kasih",
+  "mksh": "terima kasih",
   "yaa": "ya",
+  "yaaa": "ya",
   "kok": "",
-  "tp": "tetapi"
+  "dong": "",
+  "deh": "",
+  "tp": "tetapi",
+  "trs": "terus",
+  "yg": "yang",
+  "aja": "saja",
+  "udh": "sudah",
+  "blm": "belum",
+  "pdhl": "padahal",
+  "krn": "karena"
 };
 
-document.getElementById("prosesBtn").addEventListener("click", () => {
+document.getElementById("prosesBtn").addEventListener("click", prosesTeks);
+document.getElementById("copyBtn").addEventListener("click", salinHasil);
+
+function prosesTeks() {
   const input = document.getElementById("inputText").value.trim();
   const output = document.getElementById("outputText");
 
@@ -19,20 +37,27 @@ document.getElementById("prosesBtn").addEventListener("click", () => {
     return;
   }
 
-  let hasil = input.toLowerCase();
+  let teks = input.toLowerCase();
 
-  for (let kata in aturan) {
+  // ganti kata informal
+  for (let kata in kamus) {
     const regex = new RegExp(`\\b${kata}\\b`, "gi");
-    hasil = hasil.replace(regex, aturan[kata]);
+    teks = teks.replace(regex, kamus[kata]);
   }
 
-  output.value = hasil.charAt(0).toUpperCase() + hasil.slice(1);
-});
+  // rapikan spasi
+  teks = teks.replace(/\s+/g, " ").trim();
 
-document.getElementById("copyBtn").addEventListener("click", () => {
+  // kapital awal kalimat
+  teks = teks.charAt(0).toUpperCase() + teks.slice(1);
+
+  output.value = teks;
+}
+
+function salinHasil() {
   const output = document.getElementById("outputText");
   if (!output.value) return;
   output.select();
   document.execCommand("copy");
-  alert("✅ Hasil berhasil disalin!");
-});
+  alert("✅ Teks berhasil disalin!");
+}
