@@ -77,17 +77,8 @@ function toggleHighlight() {
     ? "🎨 Highlight: ON"
     : "🎨 Highlight: OFF";
 
-  // paksa render ulang berdasarkan isi textarea
   const input = document.getElementById("inputText").value.trim();
   if (input) {
     prosesTeks();
   }
-}
-
-  const btn = document.getElementById("toggleHighlight");
-  btn.innerText = highlightAktif
-    ? "🎨 Highlight: ON"
-    : "🎨 Highlight: OFF";
-
-  prosesTeks();
 }
